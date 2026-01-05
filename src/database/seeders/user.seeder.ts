@@ -8,14 +8,23 @@ config();
 
 const configService = new ConfigService();
 
-export async function seedUsers(dataSource: DataSource): Promise<void> {
+export async function seedUsers(dataSource: DataSource, refresh: boolean = false): Promise<void> {
     const userRepository = dataSource.getRepository(User);
 
     // Check if users already exist
     const existingUsers = await userRepository.count();
-    if (existingUsers > 0) {
+    if (existingUsers > 0 && !refresh) {
         console.log('Users already seeded, skipping...');
         return;
+    }
+
+    if (refresh && existingUsers > 0) {
+        try {
+            await dataSource.query('DELETE FROM "user"');
+            console.log('Cleared existing users');
+        } catch (error) {
+            // Table might not exist yet
+        }
     }
 
     const users = [

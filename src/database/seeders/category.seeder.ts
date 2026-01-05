@@ -1,14 +1,23 @@
 import { DataSource } from 'typeorm';
 import { Category } from '../../categories/entities/category.entity';
 
-export async function seedCategories(dataSource: DataSource): Promise<void> {
+export async function seedCategories(dataSource: DataSource, refresh: boolean = false): Promise<void> {
     const categoryRepository = dataSource.getRepository(Category);
 
     // Check if categories already exist
     const existingCategories = await categoryRepository.count();
-    if (existingCategories > 0) {
+    if (existingCategories > 0 && !refresh) {
         console.log('Categories already seeded, skipping...');
         return;
+    }
+
+    if (refresh && existingCategories > 0) {
+        try {
+            await dataSource.query('DELETE FROM category');
+            console.log('Cleared existing categories');
+        } catch (error) {
+            // Table might not exist yet
+        }
     }
 
     const categories = [
@@ -31,6 +40,26 @@ export async function seedCategories(dataSource: DataSource): Promise<void> {
         {
             name: 'Sports & Outdoors',
             description: 'Sports equipment and outdoor gear',
+        },
+        {
+            name: 'Beauty & Personal Care',
+            description: 'Skincare, cosmetics, and personal care products',
+        },
+        {
+            name: 'Toys & Games',
+            description: 'Toys, board games, and entertainment',
+        },
+        {
+            name: 'Food & Beverages',
+            description: 'Snacks, beverages, and gourmet foods',
+        },
+        {
+            name: 'Furniture',
+            description: 'Home furniture and decor',
+        },
+        {
+            name: 'Automotive',
+            description: 'Car accessories and automotive products',
         },
     ];
 
