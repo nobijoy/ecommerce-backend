@@ -38,7 +38,7 @@ A professional e-commerce backend built with NestJS, TypeORM, and PostgreSQL. Th
 
 2. **Install dependencies**
    ```bash
-   npm install
+   yarn install
    ```
 
 3. **Set up environment variables**
@@ -55,13 +55,13 @@ A professional e-commerce backend built with NestJS, TypeORM, and PostgreSQL. Th
 
 5. **Run database seeders**
    ```bash
-   npm run seed
+   yarn seed
    ```
    This will populate the database with test data.
 
 6. **Start the application**
    ```bash
-   npm run start:dev
+   yarn start:dev
    ```
 
 ## 🌐 API Documentation
@@ -142,13 +142,13 @@ The application uses the following main entities:
 
 ```bash
 # Unit tests
-npm run test
+yarn test
 
 # E2E tests
-npm run test:e2e
+yarn test:e2e
 
 # Test coverage
-npm run test:cov
+yarn test:cov
 ```
 
 ## 🐳 Docker Services
@@ -172,13 +172,13 @@ This project is designed as a foundation for learning:
 ## 📝 Scripts
 
 ```bash
-npm run start          # Start the application
-npm run start:dev      # Start in development mode with watch
-npm run start:prod     # Start in production mode
-npm run build          # Build the application
-npm run seed           # Run database seeders
-npm run lint           # Lint the code
-npm run format         # Format the code
+yarn start          # Start the application
+yarn start:dev      # Start in development mode with watch
+yarn start:prod     # Start in production mode
+yarn build          # Build the application
+yarn seed           # Run database seeders
+yarn lint           # Lint the code
+yarn format         # Format the code
 ```
 
 ## 📄 License
